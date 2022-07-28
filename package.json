@@ -1,7 +1,8 @@
 {
-  "name": "new-project",
-  "displayName": "New Project",
+  "name": "new-project-from-template",
+  "displayName": "New Project From Template",
   "description": "",
+  "publisher": "ichir0roie",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.69.0"
@@ -10,16 +11,97 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:new-project.helloWorld"
+    "onCommand:new-project-from-template.newProjectFromTemplate"
   ],
   "main": "./out/extension.js",
   "contributes": {
+    "keybindings": [
+      {
+        "command": "new-project-from-template.newProjectFromTemplate",
+        "key": "ctrl+alt+b",
+        "when": "explorerResourceIsFolder"
+      }
+    ],
     "commands": [
       {
-        "command": "new-project.helloWorld",
-        "title": "Hello World"
+        "command": "new-project-from-template.newProjectFromTemplate",
+        "title": "New Project From Template"
       }
-    ]
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "new-project-from-template.newProjectFromTemplate",
+          "when": "explorerResourceIsFolder",
+          "group": "navigation@4"
+        }
+      ]
+    },
+    "debuggers": [
+      {
+        "type": "node",
+        "label": "Node Debug",
+        "program": "./out/node/nodeDebug.js",
+        "runtime": "node",
+        "languages": [
+          "typescript"
+        ],
+        "configurationAttributes": {
+          "launch": {
+            "required": [
+              "program"
+            ],
+            "properties": {
+              "program": {
+                "type": "string",
+                "description": "The program to debug."
+              }
+            }
+          }
+        },
+        "initialConfigurations": [
+          {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch Program",
+            "program": "${workspaceFolder}/app.js"
+          }
+        ],
+        "configurationSnippets": [
+          {
+            "label": "Node.js: Attach Configuration",
+            "description": "A new configuration for attaching to a running node program.",
+            "body": {
+              "type": "node",
+              "request": "attach",
+              "name": "${2:Attach to Port}",
+              "port": 9229
+            }
+          }
+        ],
+        "variables": {
+          "PickProcess": "extension.node-debug.pickNodeProcess"
+        }
+      }
+    ],
+    "configuration": {
+      "title": "New Project configuration",
+      "properties": {
+        "templates": {
+          "type": "object",
+          "description": "setup template for key and value list of generate",
+          "default": {
+            "folder": "C:/Templates/New Folder",
+            "file":"C:/Templates/New Text Document.txt"
+          }
+        },
+        "templateFolder":{
+          "type":"string",
+          "default":"C:/Templates/",
+          "description": "generate templates set folder."
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
@@ -41,5 +123,8 @@
     "glob": "^8.0.3",
     "mocha": "^10.0.0",
     "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "fs-extra": "^10.1.0"
   }
 }
