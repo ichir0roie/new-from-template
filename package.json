@@ -3,7 +3,7 @@
   "displayName": "New From Template",
   "description": "",
   "publisher": "ichir0roie",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "engines": {
     "vscode": "^1.69.0"
   },
@@ -85,12 +85,12 @@
           "description": "setup template for key and value list of generate",
           "default": {
             "folder": "C:/Templates/New Folder",
-            "file":"C:/Templates/New Text Document.txt"
+            "file": "C:/Templates/New Text Document.txt"
           }
         },
-        "templateFolder":{
-          "type":"string",
-          "default":"C:/Templates/",
+        "templateFolder": {
+          "type": "string",
+          "default": "C:/Templates/",
           "description": "generate templates set folder."
         }
       }
