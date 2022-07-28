@@ -17,7 +17,7 @@ export function activate(context: vscode.ExtensionContext) {
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with registerCommand
 	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('new-project-from-template.newProjectFromTemplate', createProject);
+	let disposable = vscode.commands.registerCommand('new-from-template.newFromTemplate', createProject);
 
 	context.subscriptions.push(disposable);
 }
@@ -38,8 +38,11 @@ async function createProject(uri:vscode.Uri|undefined=undefined){
 		vscode.window.showErrorMessage('not found template path');
 		return;
 	}
-
-	const currentPath=await gcp.getCurrentFolder();
+	let currentPath:string|undefined=uri?.fsPath;
+	if(uri===undefined){
+		currentPath=await gcp.getCurrentFolder();
+	}
+	
 	if(currentPath===undefined||currentPath===''){
 		vscode.window.showErrorMessage('current path not folder');
 		return;

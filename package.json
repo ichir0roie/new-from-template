@@ -1,6 +1,6 @@
 {
-  "name": "new-project-from-template",
-  "displayName": "New Project From Template",
+  "name": "new-from-template",
+  "displayName": "New From Template",
   "description": "",
   "publisher": "ichir0roie",
   "version": "0.0.1",
@@ -11,29 +11,22 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:new-project-from-template.newProjectFromTemplate"
+    "onCommand:new-from-template.newFromTemplate"
   ],
   "main": "./out/extension.js",
   "contributes": {
-    "keybindings": [
-      {
-        "command": "new-project-from-template.newProjectFromTemplate",
-        "key": "ctrl+alt+b",
-        "when": "explorerResourceIsFolder"
-      }
-    ],
     "commands": [
       {
-        "command": "new-project-from-template.newProjectFromTemplate",
+        "command": "new-from-template.newFromTemplate",
         "title": "New Project From Template"
       }
     ],
     "menus": {
       "explorer/context": [
         {
-          "command": "new-project-from-template.newProjectFromTemplate",
+          "command": "new-from-template.newFromTemplate",
           "when": "explorerResourceIsFolder",
-          "group": "navigation@4"
+          "group": "navigation@99"
         }
       ]
     },
