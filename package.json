@@ -27,7 +27,7 @@
         {
           "command": "new-from-template.newFromTemplate",
           "when": "explorerResourceIsFolder",
-          "group": "navigation@999"
+          "group": "new-project"
         }
       ]
     },
